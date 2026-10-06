@@ -1,0 +1,165 @@
+<mxfile host="app.diagrams.net" modified="2026-10-04T10:00:00.000Z" agent="Antigravity E2EE Threat Modeler" version="22.1.0" type="device">
+  <diagram id="E2EE-AI-Chatbot-Threat-Model" name="E2EE AI Chatbot Security Architecture">
+    <mxGraphModel dx="1420" dy="880" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1600" pageHeight="1100" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+
+        <!-- TITLE AND HEADER -->
+        <mxCell id="hdr-bg" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#1e293b;strokeColor=#334155;arcSize=10;" vertex="1" parent="1">
+          <mxGeometry x="40" y="20" width="1520" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="hdr-title" value="E2EE AI CHATBOT SECURITY ARCHITECTURE &amp; STRIDE THREAT SURFACE MAP" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=20;fontStyle=1;fontColor=#f8fafc;" vertex="1" parent="1">
+          <mxGeometry x="60" y="32" width="900" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="hdr-sub" value="Course: Data Security &amp; Privacy (22AI73) | Student: Saransh Neema (1DS23AI048) | Trust Boundaries, Data Flows &amp; Threats" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=12;fontColor=#94a3b8;" vertex="1" parent="1">
+          <mxGeometry x="60" y="60" width="900" height="20" as="geometry" />
+        </mxCell>
+
+        <!-- TRUST BOUNDARY 1: USER CLIENT ZONE -->
+        <mxCell id="tb-client" value="[TB-01] USER CLIENT TRUST BOUNDARY (Untrusted OS / Edge Endpoint)" style="swimlane;whiteSpace=wrap;html=1;fillColor=#f8fafc;strokeColor=#ef4444;strokeWidth=2;dashed=1;fontColor=#b91c1c;fontStyle=1;fontSize=12;startSize=30;" vertex="1" parent="1">
+          <mxGeometry x="40" y="120" width="340" height="700" as="geometry" />
+        </mxCell>
+        <mxCell id="client-user" value="User / Chat Client App&#xa;(Mobile / Desktop Client)&#xa;&#xa;[Threats: THR-001, THR-008]" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e0e7ff;strokeColor=#4338ca;fontColor=#1e1b4b;fontStyle=1;fontSize=12;" vertex="1" parent="tb-client">
+          <mxGeometry x="30" y="70" width="280" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="client-keys" value="Encryption / Key Management&#xa;(Ephemeral ECDH / Double Ratchet)&#xa;Hardware Keystore / Secure Enclave&#xa;&#xa;[Threats: THR-004, THR-011]" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fef3c7;strokeColor=#d97706;fontColor=#78350f;fontStyle=1;fontSize=12;" vertex="1" parent="tb-client">
+          <mxGeometry x="30" y="240" width="280" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="client-ui" value="Chat UI &amp; Local Message Cache&#xa;(Encrypted SQLite Storage / Zeroize RAM)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f1f5f9;strokeColor=#64748b;fontColor=#0f172a;fontSize=11;" vertex="1" parent="tb-client">
+          <mxGeometry x="30" y="420" width="280" height="80" as="geometry" />
+        </mxCell>
+
+        <!-- TRUST BOUNDARY 2: INGRESS DMZ & RELAY ZONE -->
+        <mxCell id="tb-dmz" value="[TB-02] PERIMETER &amp; MESSAGE RELAY ZONE (Untrusted Public Transit)" style="swimlane;whiteSpace=wrap;html=1;fillColor=#f8fafc;strokeColor=#f59e0b;strokeWidth=2;dashed=1;fontColor=#b45309;fontStyle=1;fontSize=12;startSize=30;" vertex="1" parent="1">
+          <mxGeometry x="440" y="120" width="340" height="700" as="geometry" />
+        </mxCell>
+        <mxCell id="dmz-gateway" value="Secure Gateway (Ingress WAF)&#xa;TLS 1.3 Termination &amp; Rate Limiter&#xa;&#xa;[Threats: THR-003, THR-013]" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fee2e2;strokeColor=#dc2626;fontColor=#7f1d1d;fontStyle=1;fontSize=12;" vertex="1" parent="tb-dmz">
+          <mxGeometry x="30" y="70" width="280" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="dmz-auth" value="Identity &amp; Authentication Service&#xa;OAuth2.0 / RS256 JWT Token Issuer&#xa;&#xa;[Threat: THR-017]" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e0f2fe;strokeColor=#0284c7;fontColor=#0c4a6e;fontStyle=1;fontSize=12;" vertex="1" parent="tb-dmz">
+          <mxGeometry x="30" y="240" width="280" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="dmz-relay" value="Message Relay Server&#xa;Zero-Knowledge Envelope Router&#xa;(Encrypted Ephemeral Queuing)&#xa;&#xa;[Threats: THR-010, THR-015]" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fef9c3;strokeColor=#ca8a04;fontColor=#713f12;fontStyle=1;fontSize=12;" vertex="1" parent="tb-dmz">
+          <mxGeometry x="30" y="420" width="280" height="100" as="geometry" />
+        </mxCell>
+
+        <!-- TRUST BOUNDARY 3: INTERNAL AI PROCESSING ENCLAVE -->
+        <mxCell id="tb-enclave" value="[TB-03] SECURE AI PROCESSING ENCLAVE (Confidential Compute Environment)" style="swimlane;whiteSpace=wrap;html=1;fillColor=#f8fafc;strokeColor=#10b981;strokeWidth=2;dashed=1;fontColor=#047857;fontStyle=1;fontSize=12;startSize=30;" vertex="1" parent="1">
+          <mxGeometry x="840" y="120" width="360" height="700" as="geometry" />
+        </mxCell>
+        <mxCell id="ai-api" value="API Layer &amp; Message Decapsulator&#xa;Envelope Verification &amp; Session Ratchet&#xa;&#xa;[Threats: THR-005, THR-018]" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ecfdf5;strokeColor=#059669;fontColor=#064e3b;fontStyle=1;fontSize=12;" vertex="1" parent="tb-enclave">
+          <mxGeometry x="40" y="70" width="280" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="ai-guardrail-in" value="Input Security Guardrail &amp; Filter&#xa;Prompt Injection &amp; Jailbreak Detector" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dcfce7;strokeColor=#16a34a;fontColor=#14532d;fontSize=11;fontStyle=1;" vertex="1" parent="tb-enclave">
+          <mxGeometry x="40" y="200" width="280" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="ai-model" value="AI Processing Service (LLM Engine)&#xa;Confidential Inference Sandbox&#xa;&#xa;[Threats: THR-002, THR-006, THR-012, THR-014]" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#cffafe;strokeColor=#0891b2;fontColor=#164e63;fontStyle=1;fontSize=12;" vertex="1" parent="tb-enclave">
+          <mxGeometry x="40" y="290" width="280" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="ai-guardrail-out" value="Output Safety &amp; DLP Guardrail&#xa;PII Filter &amp; Leakage Prevention" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dcfce7;strokeColor=#16a34a;fontColor=#14532d;fontSize=11;fontStyle=1;" vertex="1" parent="tb-enclave">
+          <mxGeometry x="40" y="420" width="280" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="ai-resp-enc" value="Response Encryption Engine&#xa;Client Session Ciphertext Re-encryption" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fae8ff;strokeColor=#a21caf;fontColor=#701a75;fontStyle=1;fontSize=12;" vertex="1" parent="tb-enclave">
+          <mxGeometry x="40" y="520" width="280" height="80" as="geometry" />
+        </mxCell>
+
+        <!-- TRUST BOUNDARY 4: MANAGEMENT & AUDITING ZONE -->
+        <mxCell id="tb-mgmt" value="[TB-04] MANAGEMENT &amp; GOVERNANCE ZONE" style="swimlane;whiteSpace=wrap;html=1;fillColor=#f8fafc;strokeColor=#8b5cf6;strokeWidth=2;dashed=1;fontColor=#6d28d9;fontStyle=1;fontSize=12;startSize=30;" vertex="1" parent="1">
+          <mxGeometry x="1240" y="120" width="320" height="700" as="geometry" />
+        </mxCell>
+        <mxCell id="mgmt-admin" value="Administration Interface&#xa;RBAC / Dual-Control Management Portal&#xa;&#xa;[Threats: THR-009, THR-016]" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ede9fe;strokeColor=#7c3aed;fontColor=#4c1d95;fontStyle=1;fontSize=12;" vertex="1" parent="tb-mgmt">
+          <mxGeometry x="25" y="70" width="270" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="mgmt-audit" value="Logging / Audit Service&#xa;WORM Storage &amp; Merkle Chain Logs&#xa;&#xa;[Threat: THR-007]" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fce7f3;strokeColor=#db2777;fontColor=#831843;fontStyle=1;fontSize=12;" vertex="1" parent="tb-mgmt">
+          <mxGeometry x="25" y="240" width="270" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="mgmt-siem" value="SIEM &amp; Security Monitoring&#xa;Intrusion &amp; Anomaly Detection Alerts" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f1f5f9;strokeColor=#475569;fontColor=#0f172a;fontSize=11;" vertex="1" parent="tb-mgmt">
+          <mxGeometry x="25" y="420" width="270" height="80" as="geometry" />
+        </mxCell>
+
+        <!-- DATA FLOW CONNECTIONS -->
+        <!-- 1. Client to Key Management -->
+        <mxCell id="flow-1" value="1. Key Ratchet / Session Init" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#2563eb;strokeWidth=2;fontColor=#1e40af;fontSize=10;" edge="1" parent="1" source="client-user" target="client-keys">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <!-- 2. Client to Auth -->
+        <mxCell id="flow-2" value="2. Auth Request &amp; Token Grant" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#0284c7;strokeWidth=2;fontColor=#0369a1;fontSize=10;" edge="1" parent="1" source="client-user" target="dmz-auth">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <!-- 3. Client to Gateway -->
+        <mxCell id="flow-3" value="3. Outgoing Encrypted Prompt (E2EE)" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#dc2626;strokeWidth=2;fontColor=#991b1b;fontSize=10;" edge="1" parent="1" source="client-keys" target="dmz-gateway">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <!-- 4. Gateway to Relay -->
+        <mxCell id="flow-4" value="4. Ingress Forwarding (Ciphertext)" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#ea580c;strokeWidth=2;fontColor=#9a3412;fontSize=10;" edge="1" parent="1" source="dmz-gateway" target="dmz-relay">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <!-- 5. Relay to AI API Layer -->
+        <mxCell id="flow-5" value="5. Queue Dispatch (Ciphertext Blob)" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#16a34a;strokeWidth=2;fontColor=#15803d;fontSize=10;" edge="1" parent="1" source="dmz-relay" target="ai-api">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <!-- 6. API to Guardrail In -->
+        <mxCell id="flow-6" value="6. Decrypted Prompt" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#059669;strokeWidth=2;fontColor=#065f46;fontSize=10;" edge="1" parent="1" source="ai-api" target="ai-guardrail-in">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <!-- 7. Guardrail In to AI Model -->
+        <mxCell id="flow-7" value="7. Sanitized Prompt" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#0891b2;strokeWidth=2;fontColor=#155e75;fontSize=10;" edge="1" parent="1" source="ai-guardrail-in" target="ai-model">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <!-- 8. AI Model to Guardrail Out -->
+        <mxCell id="flow-8" value="8. Generated Tokens" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#0891b2;strokeWidth=2;fontColor=#155e75;fontSize=10;" edge="1" parent="1" source="ai-model" target="ai-guardrail-out">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <!-- 9. Guardrail Out to Resp Encryption -->
+        <mxCell id="flow-9" value="9. Filtered AI Response" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#9333ea;strokeWidth=2;fontColor=#6b21a8;fontSize=10;" edge="1" parent="1" source="ai-guardrail-out" target="ai-resp-enc">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <!-- 10. Resp Encryption to Relay Return -->
+        <mxCell id="flow-10" value="10. Re-encrypted Ciphertext Response" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#9333ea;strokeWidth=2;fontColor=#6b21a8;fontSize=10;" edge="1" parent="1" source="ai-resp-enc" target="dmz-relay">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="820" y="680" />
+              <mxPoint x="820" y="580" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <!-- 11. Relay Return to Client -->
+        <mxCell id="flow-11" value="11. Push E2EE Response to Client" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#2563eb;strokeWidth=2;fontColor=#1d4ed8;fontSize=10;" edge="1" parent="1" source="dmz-relay" target="client-ui">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <!-- AUDIT & ADMIN FLOWS -->
+        <mxCell id="flow-audit-1" value="Audit Log Stream" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#db2777;strokeWidth=1;dashed=1;fontColor=#9d174d;fontSize=9;" edge="1" parent="1" source="dmz-gateway" target="mgmt-audit">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="flow-audit-2" value="Inference Metrics" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#db2777;strokeWidth=1;dashed=1;fontColor=#9d174d;fontSize=9;" edge="1" parent="1" source="ai-api" target="mgmt-audit">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="flow-admin-ctrl" value="Security Policies &amp; Keys" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#7c3aed;strokeWidth=1;dashed=1;fontColor=#5b21b6;fontSize=9;" edge="1" parent="1" source="mgmt-admin" target="dmz-gateway">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1200" y="210" />
+              <mxPoint x="800" y="210" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+
+        <!-- LEGEND & STRIDE MAPPING BOX -->
+        <mxCell id="legend-box" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#1e293b;strokeColor=#334155;" vertex="1" parent="1">
+          <mxGeometry x="40" y="850" width="1520" height="190" as="geometry" />
+        </mxCell>
+        <mxCell id="legend-title" value="STRIDE THREAT TAXONOMY &amp; TRUST BOUNDARY LEGEND" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=14;fontStyle=1;fontColor=#f8fafc;" vertex="1" parent="1">
+          <mxGeometry x="60" y="860" width="600" height="25" as="geometry" />
+        </mxCell>
+        <mxCell id="legend-tb" value="TRUST BOUNDARIES:&#xa;• [TB-01] Client Zone (Untrusted Device Environment, Physical Access Risk)&#xa;• [TB-02] Ingress &amp; Relay DMZ (Untrusted Internet Transit, Eavesdropping &amp; DDoS Target)&#xa;• [TB-03] AI Processing Enclave (Confidential Computing Core, Plaintext Processing Zone)&#xa;• [TB-04] Management Zone (Administrative Control Plane, High Privilege Target)" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=top;whiteSpace=wrap;rounded=0;fontSize=11;fontColor=#cbd5e1;" vertex="1" parent="1">
+          <mxGeometry x="60" y="895" width="700" height="130" as="geometry" />
+        </mxCell>
+        <mxCell id="legend-stride" value="STRIDE CATEGORIES:&#xa;• S - Spoofing: Forging identity of client, relay, or AI inference worker.&#xa;• T - Tampering: Modifying ciphertext, keys, or prompt injections.&#xa;• R - Repudiation: Denying dispatched prompts or altering audit trail.&#xa;• I - Information Disclosure: KV cache leaks, RAM scraping, traffic profiling.&#xa;• D - Denial of Service: TLS handshake floods, prompt algorithmic complexity.&#xa;• E - Elevation of Privilege: IDOR, JWT confusion, container escapes." style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=top;whiteSpace=wrap;rounded=0;fontSize=11;fontColor=#cbd5e1;" vertex="1" parent="1">
+          <mxGeometry x="800" y="895" width="730" height="130" as="geometry" />
+        </mxCell>
+
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

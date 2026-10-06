@@ -1,0 +1,146 @@
+<mxfile host="app.diagrams.net" modified="2026-10-04T10:45:00.000Z" agent="Antigravity STRIDE Threat Modeler" version="22.1.0" type="device">
+  <diagram id="STRIDE-Threat-Mapping" name="STRIDE Threat &amp; Mitigation Mapping">
+    <mxGraphModel dx="1420" dy="880" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1600" pageHeight="1100" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+
+        <!-- HEADER -->
+        <mxCell id="hdr-bg" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#1e293b;strokeColor=#334155;arcSize=10;" vertex="1" parent="1">
+          <mxGeometry x="40" y="20" width="1520" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="hdr-title" value="STRIDE THREAT-TO-MITIGATION TRACEABILITY MATRIX (E2EE AI CHATBOT)" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=18;fontStyle=1;fontColor=#f8fafc;" vertex="1" parent="1">
+          <mxGeometry x="60" y="32" width="1000" height="25" as="geometry" />
+        </mxCell>
+        <mxCell id="hdr-sub" value="Component ➔ STRIDE Category ➔ Example Threat Scenario ➔ Defense Control (Data Security &amp; Privacy - 22AI73 | Saransh Neema 1DS23AI048)" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=12;fontColor=#94a3b8;" vertex="1" parent="1">
+          <mxGeometry x="60" y="58" width="1000" height="20" as="geometry" />
+        </mxCell>
+
+        <!-- COLUMN HEADERS -->
+        <mxCell id="col-comp" value="1. Architecture Component" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#334155;strokeColor=#475569;fontColor=#ffffff;fontStyle=1;fontSize=13;" vertex="1" parent="1">
+          <mxGeometry x="40" y="110" width="300" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="col-stride" value="2. STRIDE Category" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#334155;strokeColor=#475569;fontColor=#ffffff;fontStyle=1;fontSize=13;" vertex="1" parent="1">
+          <mxGeometry x="380" y="110" width="220" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="col-threat" value="3. Concrete Threat Scenario" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#334155;strokeColor=#475569;fontColor=#ffffff;fontStyle=1;fontSize=13;" vertex="1" parent="1">
+          <mxGeometry x="640" y="110" width="440" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="col-mitig" value="4. Recommended Defense &amp; Security Property" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#334155;strokeColor=#475569;fontColor=#ffffff;fontStyle=1;fontSize=13;" vertex="1" parent="1">
+          <mxGeometry x="1120" y="110" width="440" height="40" as="geometry" />
+        </mxCell>
+
+        <!-- ROW 1: SPOOFING -->
+        <mxCell id="r1-comp" value="User / Chat Client&#xa;[Untrusted OS Endpoint]" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f1f5f9;strokeColor=#64748b;fontColor=#0f172a;fontSize=11;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="40" y="170" width="300" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="r1-stride" value="SPOOFING (S)&#xa;[Property: Authentication]" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fee2e2;strokeColor=#dc2626;fontColor=#7f1d1d;fontStyle=1;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="380" y="170" width="220" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="r1-threat" value="THR-001: User Identity Impersonation&#xa;Adversary steals ephemeral token or clones device fingerprint to send prompts as victim." style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#cbd5e1;fontColor=#1e293b;fontSize=10;align=left;spacingLeft=10;" vertex="1" parent="1">
+          <mxGeometry x="640" y="170" width="440" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="r1-mitig" value="Control: Hardware Keystore &amp; mTLS Attestation&#xa;Binds private keys to hardware Secure Enclave, rejecting token replay on external devices." style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ecfdf5;strokeColor=#059669;fontColor=#064e3b;fontSize=10;align=left;spacingLeft=10;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="1120" y="170" width="440" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="e1-1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#64748b;strokeWidth=2;" edge="1" parent="1" source="r1-comp" target="r1-stride" />
+        <mxCell id="e1-2" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#dc2626;strokeWidth=2;" edge="1" parent="1" source="r1-stride" target="r1-threat" />
+        <mxCell id="e1-3" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#059669;strokeWidth=2;" edge="1" parent="1" source="r1-threat" target="r1-mitig" />
+
+        <!-- ROW 2: TAMPERING -->
+        <mxCell id="r2-comp" value="AI Processing Service&#xa;[Confidential Inference Core]" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f1f5f9;strokeColor=#64748b;fontColor=#0f172a;fontSize=11;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="40" y="260" width="300" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="r2-stride" value="TAMPERING (T)&#xa;[Property: Integrity]" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fef3c7;strokeColor=#d97706;fontColor=#78350f;fontStyle=1;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="380" y="260" width="220" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="r2-threat" value="THR-007: Indirect Prompt Injection&#xa;Adversary injects adversarial delimiters into prompt to hijack model instructions and alignment." style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#cbd5e1;fontColor=#1e293b;fontSize=10;align=left;spacingLeft=10;" vertex="1" parent="1">
+          <mxGeometry x="640" y="260" width="440" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="r2-mitig" value="Control: Dual-LLM Guardrails &amp; Delimiter Sandboxing&#xa;Screens semantic tokens in dedicated pre-inference guardrail before passing to LLM engine." style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ecfdf5;strokeColor=#059669;fontColor=#064e3b;fontSize=10;align=left;spacingLeft=10;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="1120" y="260" width="440" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="e2-1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#64748b;strokeWidth=2;" edge="1" parent="1" source="r2-comp" target="r2-stride" />
+        <mxCell id="e2-2" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#d97706;strokeWidth=2;" edge="1" parent="1" source="r2-stride" target="r2-threat" />
+        <mxCell id="e2-3" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#059669;strokeWidth=2;" edge="1" parent="1" source="r2-threat" target="r2-mitig" />
+
+        <!-- ROW 3: REPUDIATION -->
+        <mxCell id="r3-comp" value="Logging / Audit Service&#xa;[Governance Plane]" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f1f5f9;strokeColor=#64748b;fontColor=#0f172a;fontSize=11;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="40" y="350" width="300" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="r3-stride" value="REPUDIATION (R)&#xa;[Property: Accountability]" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ede9fe;strokeColor=#7c3aed;fontColor=#4c1d95;fontStyle=1;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="380" y="350" width="220" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="r3-threat" value="THR-010: Audit Trail Erasure by Privileged Operator&#xa;Rogue admin erases routing and session logs to conceal unauthorized system activities." style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#cbd5e1;fontColor=#1e293b;fontSize=10;align=left;spacingLeft=10;" vertex="1" parent="1">
+          <mxGeometry x="640" y="350" width="440" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="r3-mitig" value="Control: WORM Cloud Storage &amp; Merkle Hash Trees&#xa;Append-only object locks make historical audit logs mathematically tamper-evident." style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ecfdf5;strokeColor=#059669;fontColor=#064e3b;fontSize=10;align=left;spacingLeft=10;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="1120" y="350" width="440" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="e3-1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#64748b;strokeWidth=2;" edge="1" parent="1" source="r3-comp" target="r3-stride" />
+        <mxCell id="e3-2" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#7c3aed;strokeWidth=2;" edge="1" parent="1" source="r3-stride" target="r3-threat" />
+        <mxCell id="e3-3" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#059669;strokeWidth=2;" edge="1" parent="1" source="r3-threat" target="r3-mitig" />
+
+        <!-- ROW 4: INFORMATION DISCLOSURE -->
+        <mxCell id="r4-comp" value="AI Processing Service&#xa;[GPU Compute Cluster]" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f1f5f9;strokeColor=#64748b;fontColor=#0f172a;fontSize=11;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="40" y="440" width="300" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="r4-stride" value="INFORMATION DISCLOSURE (I)&#xa;[Property: Confidentiality]" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e0f2fe;strokeColor=#0284c7;fontColor=#0c4a6e;fontStyle=1;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="380" y="440" width="220" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="r4-threat" value="THR-014: KV Attention Cache Multi-Tenant Leakage&#xa;Shared GPU memory fails to clear attention states, regurgitating previous tenant prompts." style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#cbd5e1;fontColor=#1e293b;fontSize=10;align=left;spacingLeft=10;" vertex="1" parent="1">
+          <mxGeometry x="640" y="440" width="440" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="r4-mitig" value="Control: AMD SEV-SNP Enclaves &amp; Per-Turn KV Flush&#xa;Isolates tenant memory pages in encrypted hardware enclaves and zeroes attention weights." style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ecfdf5;strokeColor=#059669;fontColor=#064e3b;fontSize=10;align=left;spacingLeft=10;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="1120" y="440" width="440" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="e4-1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#64748b;strokeWidth=2;" edge="1" parent="1" source="r4-comp" target="r4-stride" />
+        <mxCell id="e4-2" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#0284c7;strokeWidth=2;" edge="1" parent="1" source="r4-stride" target="r4-threat" />
+        <mxCell id="e4-3" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#059669;strokeWidth=2;" edge="1" parent="1" source="r4-threat" target="r4-mitig" />
+
+        <!-- ROW 5: DENIAL OF SERVICE -->
+        <mxCell id="r5-comp" value="Secure Gateway / AI Engine&#xa;[Perimeter &amp; Inference Queue]" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f1f5f9;strokeColor=#64748b;fontColor=#0f172a;fontSize=11;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="40" y="530" width="300" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="r5-stride" value="DENIAL OF SERVICE (D)&#xa;[Property: Availability]" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fee2e2;strokeColor=#dc2626;fontColor=#7f1d1d;fontStyle=1;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="380" y="530" width="220" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="r5-threat" value="THR-018: Recursive Prompt Token Expansion Attack&#xa;Adversary crafts recursive queries forcing maximum token output loops, exhausting GPU cores." style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#cbd5e1;fontColor=#1e293b;fontSize=10;align=left;spacingLeft=10;" vertex="1" parent="1">
+          <mxGeometry x="640" y="530" width="440" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="r5-mitig" value="Control: Token Generation Quotas &amp; Inference Timeouts&#xa;Enforces hard caps on token limits and auto-aborts repetitive recursive inference loops." style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ecfdf5;strokeColor=#059669;fontColor=#064e3b;fontSize=10;align=left;spacingLeft=10;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="1120" y="530" width="440" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="e5-1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#64748b;strokeWidth=2;" edge="1" parent="1" source="r5-comp" target="r5-stride" />
+        <mxCell id="e5-2" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#dc2626;strokeWidth=2;" edge="1" parent="1" source="r5-stride" target="r5-threat" />
+        <mxCell id="e5-3" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#059669;strokeWidth=2;" edge="1" parent="1" source="r5-threat" target="r5-mitig" />
+
+        <!-- ROW 6: ELEVATION OF PRIVILEGE -->
+        <mxCell id="r6-comp" value="Identity Service / Admin API&#xa;[Control Plane Endpoints]" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f1f5f9;strokeColor=#64748b;fontColor=#0f172a;fontSize=11;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="40" y="620" width="300" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="r6-stride" value="ELEVATION OF PRIVILEGE (E)&#xa;[Property: Authorization]" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fae8ff;strokeColor=#a21caf;fontColor=#701a75;fontStyle=1;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="380" y="620" width="220" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="r6-threat" value="THR-022: JWT Algorithm Confusion &amp; Role Escalation&#xa;Adversary changes algorithm to HS256, signing admin role claim with known RSA public key." style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#cbd5e1;fontColor=#1e293b;fontSize=10;align=left;spacingLeft=10;" vertex="1" parent="1">
+          <mxGeometry x="640" y="620" width="440" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="r6-mitig" value="Control: Algorithm Whitelisting (RS256/EdDSA Only)&#xa;Rejects symmetric HMAC validation on asymmetric tokens, blocking signature forgery." style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ecfdf5;strokeColor=#059669;fontColor=#064e3b;fontSize=10;align=left;spacingLeft=10;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="1120" y="620" width="440" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="e6-1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#64748b;strokeWidth=2;" edge="1" parent="1" source="r6-comp" target="r6-stride" />
+        <mxCell id="e6-2" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#a21caf;strokeWidth=2;" edge="1" parent="1" source="r6-stride" target="r6-threat" />
+        <mxCell id="e6-3" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#059669;strokeWidth=2;" edge="1" parent="1" source="r6-threat" target="r6-mitig" />
+
+        <!-- FOOTER / SUMMARY NOTE -->
+        <mxCell id="ftr-bg" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#1e293b;strokeColor=#334155;" vertex="1" parent="1">
+          <mxGeometry x="40" y="720" width="1520" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="ftr-text" value="SUMMARY: End-to-End Encryption protects communications across transit (Flows F2, F3, F4, F6). Inside the AI Enclave (Flow F5), defense-in-depth requires confidential compute enclaves (AMD SEV-SNP) and dual prompt guardrails to achieve comprehensive confidentiality, integrity, and availability." style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=11;fontColor=#cbd5e1;fontStyle=2;" vertex="1" parent="1">
+          <mxGeometry x="60" y="730" width="1480" height="40" as="geometry" />
+        </mxCell>
+
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
